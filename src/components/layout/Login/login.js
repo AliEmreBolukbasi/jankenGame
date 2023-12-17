@@ -1,5 +1,6 @@
 import React , {useState,useEffect}from 'react'
 import './login.css';
+import ProjectHeader from '../../common/projectHeader/projectHeader'
 
 export default function LoginForm() {
     const [imageUrl,setImageUrl] = useState('');
@@ -26,22 +27,22 @@ export default function LoginForm() {
     }
   return (
     <div>
-    <img src={imageUrl} style={{ zIndex: -999, position: 'absolute' }} alt="background" />
-    <div className='ProjeBaslik'>Janken Oyunu</div>
-
-    <form className="login-form">
-        <label>
+        <ProjectHeader />  
+        <img src={imageUrl} style={{ zIndex: -999, position: 'absolute' }} alt="background" />
+        <div  className='loginForm'>            
+            <form className="login-form">
+            <label>
             Kullanıcı Adı:
             <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-        </label>
-
+            </label>
         <label>
             Şifre:
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
 
         <button type="button" onClick={handleLogin}>Giriş Yap</button>
-    </form>
+        </form>        
+    </div>    
 </div>
   )
 }
