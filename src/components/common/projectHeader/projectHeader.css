@@ -1,0 +1,11 @@
+.ProjeBaslik{
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 3em;
+    
+}
+
+
+.projectHeader{
+    text-align: center;
+    background: linear-gradient(to bottom right, rgba(0, 0, 255, 0.8), rgba(255, 0, 0, 0.8));}

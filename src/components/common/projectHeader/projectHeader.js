@@ -1,8 +1,9 @@
 import React from 'react';
+import '../projectHeader/projectHeader.css';
 
 const ProjectHeader = () => {
   return (
-    <div>
+    <div className='projectHeader'>
       <div className='ProjeBaslik'>Janken Oyunu</div>
     </div>
   );
