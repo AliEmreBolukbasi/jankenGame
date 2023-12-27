@@ -27,15 +27,15 @@
 .firstUserName{
     margin-left: 20%;
     background-color: white;
-    padding: 11px 5px;
-    border-radius: 5px;
+    padding: 40px 30px;
+    border-radius: 50%;
 }
 
 .secondUserName{
     margin-left: 50%;
     background-color: white;
-    padding: 11px 5px;
-    border-radius: 5px;
+    padding: 40px 30px;
+    border-radius: 50%;
 }
 
 .gameBox{
@@ -78,6 +78,12 @@
     background-color: white;
     padding: 10px 10px;
     border-radius: 5px;
+}
+
+.gameResultTitle{
+    position: relative;
+    display: block;
+    margin-top: 10px;
 }
 
 .nextImgButton{
