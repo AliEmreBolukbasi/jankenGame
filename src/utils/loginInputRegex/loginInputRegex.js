@@ -5,7 +5,7 @@ export default function LoginInputRegex({ value, onValidationChange }) {
 
   function validateInput() {
     if (!checkUserName(value)) {
-      setErrorMessage('Kullanıcı adı en az 1 Büyük harf ve en az 4, en fazla 12 karakter içermelidir.');
+      setErrorMessage('Bu alan 1 Büyük harf ve 4-12 arasında karakter içermelidir.');
       onValidationChange(false);
     }else{
       setErrorMessage('');
@@ -24,8 +24,8 @@ export default function LoginInputRegex({ value, onValidationChange }) {
   },[value]);
 
   return (
-    <div>
-      <span>{errorMessage}</span>
+    <div className='errorMessageBox'>
+      <span className='errorMessage'>{errorMessage}</span>
     </div>
   );
 }

@@ -1,12 +1,14 @@
 import React , {useState,useEffect}from 'react'
 import './login.css';
-import faceIcon from '../../../assets/images/face.png';
-import twitIcon from '../../../assets/images/twit.png';
-import instaIcon from '../../../assets/images/insta.png';
-import ProjectHeader from '../../common/projectHeader/projectHeader';
-import LoginInputRegex from '../../../utils/loginInputRegex/loginInputRegex'
+import faceIcon from '../../assets/images/face.png';
+import twitIcon from '../../assets/images/twit.png';
+import instaIcon from '../../assets/images/insta.png';
+import ProjectHeader from '../../components/layout/projectHeader/projectHeader';
+import LoginInputRegex from '../../utils/loginInputRegex/loginInputRegex'
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginForm() { 
+    const navigate = useNavigate();
     const [imageUrl,setImageUrl] = useState('');
     const [coupleUsername,setCoupleUsername] = useState('');
     const [coupleSecondUsername,setCoupleSecondUsername] = useState('');
@@ -36,7 +38,16 @@ export default function LoginForm() {
     };
 
     const handleLogin= () => { //oyuna geçiş işlemleri
-        console.log('Kullanıcı Adı:', onlyUsername);
+      if(oyunTipiVisible == false){ // Couple oyun modu
+        localStorage.setItem('firstUserName', coupleUsername);
+        localStorage.setItem('SecondUserName', coupleSecondUsername);
+      }else{
+        localStorage.setItem('firstUserName', onlyUsername);
+        localStorage.setItem('SecondUserName', "Bilgisayar");
+      }
+      //  React Router v6 ve sonrası 
+      //  history yerine sayfa yönlendirme için gelmiş
+      navigate('/game');
     };
 
     const handleValidationChange = (isValid) => { // Login buton kontrol
@@ -94,7 +105,7 @@ export default function LoginForm() {
             required
           />
           <LoginInputRegex value={coupleSecondUsername} onValidationChange={handleValidationChange} />
-          <button type="submit" disabled={isSubmitDisabled} id="submit-couple-btn" className="submit-btn-login">
+          <button onClick={handleLogin} type="submit" disabled={isSubmitDisabled} id="submit-couple-btn" className="submit-btn-login">
             HADİ OYNAYALIM
           </button>
         </form>
