@@ -16,7 +16,7 @@ export default function LoginForm() {
     const [oyunTipiVisible, setOyunTipiVisible] = useState(true);
     const [isSubmitDisabled, setIsSubmitDisabled] = useState('');
 
-    useEffect(()=>{ //Random background getirilmesi
+    useEffect(()=>{ //Random background image getirilmesi (store taşınıcak)
         const fetchImage = async()=>{
             try{
                 const response =await fetch('https://source.unsplash.com/random/1920x1080');

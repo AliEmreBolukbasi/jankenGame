@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react'
 import './game.css'
 import ProjectHeader from '../../components/layout/projectHeader/projectHeader' 
 import ResultCalculate from '../../utils/resultCalculate/resultCalculate';
+import RootStore from '../../store/rootStore.ts';
 
 export default function Game() {
     const [firstUserImageIndex, setFUserImageIndex] = useState(0);
@@ -10,25 +11,25 @@ export default function Game() {
     const [secUserImage, setSecUserImage] = useState('');
     const [firstUserDisable, setFirstUserDisable] = useState(false);
     const [secUserDisable, setSecUserDisable] = useState(false);    
-    const secim = [
-        "air", "water", "dragon", "devil", "lightning",
-        "gun", "rock", "fire", "scissors", "snake", "human", "tree", "wolf", "sponge", "paper"
-    ];
+    const pngNameList = RootStore.ContentStore.pngName;
        
     useEffect(() => {
         // Sayfa yüklendiğinde veya firstUserImageIndex veya secUserImageIndex değiştiğinde çalışır
-        setFirstUserImage(require(`../../assets/images/${secim[firstUserImageIndex]}.png`));
-        setSecUserImage(require(`../../assets/images/${secim[secUserImageIndex]}.png`));
+        const firstUserImageName = pngNameList[firstUserImageIndex]?.name || '';
+        const secUserImageName = pngNameList[secUserImageIndex]?.name || '';
+    
+        setFirstUserImage(require(`../../assets/images/${firstUserImageName}.png`));
+        setSecUserImage(require(`../../assets/images/${secUserImageName}.png`));
     }, [firstUserImageIndex, secUserImageIndex]);
     
     const handleFirstUserImage = () => {
         // Bir sonraki resme geç
-        setFUserImageIndex((prevIndex) => (prevIndex + 1) % secim.length);
+        setFUserImageIndex((prevIndex) => (prevIndex + 1) % pngNameList.length);
     };
 
     const handleSecUserImage = () => {
         // Bir sonraki resme geç
-        setSUserImageIndex((prevIndex) => (prevIndex + 1) % secim.length);
+        setSUserImageIndex((prevIndex) => (prevIndex + 1) % pngNameList.length);
     };
 
     const selectImgUser = (value) =>{
@@ -40,6 +41,8 @@ export default function Game() {
     };
 
     const newGame = () => {
+        setFUserImageIndex(0);
+        setSUserImageIndex(0);
         setFirstUserDisable(false)
         setSecUserDisable(false)
     };
