@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import './game.css'
 import ProjectHeader from '../../components/layout/projectHeader/projectHeader' 
-import ResultCalculate from '../../utils/resultCalculate/resultCalculate';
+import ResultCalculate from '../../utils/resultCalculate/resultCalculate.js';
 import RootStore from '../../store/rootStore.ts';
 
 export default function Game() {
@@ -62,9 +62,8 @@ export default function Game() {
                     <button className='gameImgButton' onClick={e => selectImgUser("First")}>Seçim Yap</button>
                 </div>
                 <div className='sonucBox'>
-                    <ResultCalculate firstValue={firstUserDisable} secValue={secUserDisable} />                    
-                    <button className='nextImgButton'  onClick={newGame}>Tekrar Oyna</button>                  
-                    <span className='gameResultTitle'>Kazanan</span>
+                    <button className='nextImgButton'  onClick={newGame}>Tekrar Oyna</button>  
+                    {firstUserDisable && secUserDisable && <ResultCalculate firstValue={firstUserImageIndex} secValue={secUserImageIndex} pngNameList={pngNameList}/>   }
                 </div>                   
                 <div className='secPlayerBox'>
                     <img className='gameImg' src={secUserImage} alt={`Image ${secUserImageIndex}`} />
